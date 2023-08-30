@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaDeTarefas {
-  private ArrayList<Tarefa> tarefas = new ArrayList<>();
+  private List<Tarefa> tarefas = new ArrayList<>();
 
   public void adicionarTarefa(String descricao) {
     Tarefa tarefa = new Tarefa(descricao);
@@ -13,11 +13,13 @@ public class ListaDeTarefas {
   }
 
   public void removerTarefa(String descricao) {
+    List<Tarefa> novasTarefas = new ArrayList<>();
     for (Tarefa tarefa : tarefas) {
-      if (tarefa.getDescricao().equals(descricao)) {
-        tarefas.remove(tarefa);
+      if (!tarefa.getDescricao().equalsIgnoreCase(descricao)) {
+        novasTarefas.add(tarefa);
       }
     }
+    tarefas = novasTarefas;
   }
 
   public int obterNumeroTotalTarefas() {
